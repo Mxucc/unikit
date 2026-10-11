@@ -1,0 +1,109 @@
+name: BUG 反馈
+description: 站上的工具有一个能复现的问题 —— 提交后请补充「发生了什么」。
+title: '[BUG] '
+labels:
+  - bug
+body:
+  # 这些 id 就是 URL 查询参数的键名：站点页脚的「反馈 BUG」会把版本号 / 系统 /
+  # 浏览器 / 页面地址 / 窗口尺寸按这些 id 预填好。改名就等于把预填改坏，
+  # 站点侧 src/config/issue.ts 的 BUG_PARAM 与它的单测会一起盯着。
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈！下面的**环境信息在从站点页脚点进来时已经自动填好**，请只补充需要你自己描述的部分。
+
+        > 贴输入样例前请先脱敏：不要贴真实口令、密钥、身份证、隐私数据。
+  - type: input
+    id: app-version
+    attributes:
+      label: 站点版本
+      description: 页面底部或链接里可以看到，形如 `0.1.0`。
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: 操作系统
+      description: 你是在哪个系统上遇到的。
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - Android
+        - iOS
+        - ChromeOS
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: 浏览器与版本
+      description: 例如 Chrome 141、Safari 26，带上版本号更容易复现。
+      placeholder: Chrome 141
+    validations:
+      required: true
+  - type: input
+    id: page-url
+    attributes:
+      label: 出问题的页面地址
+      description: 完整链接，例如 https://unikit.cc/tools/base64-string-converter
+      placeholder: https://unikit.cc/tools/...
+    validations:
+      required: true
+  - type: input
+    id: viewport
+    attributes:
+      label: 窗口尺寸
+      description: 形如 1440x900。只在小屏出现的问题请务必填。
+      placeholder: 1440x900
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 问题描述
+      description: 一句话说清「哪里不对」。
+      placeholder: 点了「转换」之后结果区一直是空的。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 从打开页面开始，一步步写到你看到问题为止。
+      placeholder: |
+        1. 打开 ... 页面
+        2. 在输入框里粘贴 ...
+        3. 点「转换」
+        4. 结果区显示 ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期结果 vs 实际结果
+      description: 你以为会发生什么，实际发生了什么。
+      placeholder: |
+        预期：输出 Base64 结果
+        实际：结果区空白，控制台报 TypeError
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: 截图 / 报错原文 / 其他补充
+      description: 截图可以直接拖进这个框；报错请贴原文，不要只描述。
+      placeholder: 控制台报错原文、截图、是否稳定复现、换浏览器是否一样……
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我贴的样例数据已经脱敏，不含真实口令 / 密钥 / 个人隐私。
+          required: true
+        - label: 我同意公开讨论这个问题（需要私下沟通请改发邮件，见仓库 README）。
+          required: false

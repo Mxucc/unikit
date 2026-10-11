@@ -1,0 +1,13 @@
+# 这个仓库只放 README 与 Issue 模板，没有任何构建产物。
+# 这里保留一份常规忽略规则，纯粹是为了在本地编辑时不会误提交系统与编辑器垃圾文件。
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
+dist/
+.astro/
+test-results/
+playwright-report/
+.env
+.env.*
+!.env.example

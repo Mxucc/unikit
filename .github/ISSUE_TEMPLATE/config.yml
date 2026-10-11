@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 站点使用问题 / 工具疑问
+    url: https://unikit.cc/about
+    about: 先看工具页的常见问题与「关于」页；这里只收可复现的 BUG 与功能建议。
+  - name: 需要私下沟通（敏感信息 / 授权 / 合作）
+    url: mailto:support@unikit.cc
+    about: 不要把敏感信息贴进公开 Issue，直接发邮件。
