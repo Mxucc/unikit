@@ -1,0 +1,110 @@
+name: BUG 回報
+description: 站上的工具出現可重現的問題 —— 送出後請補充「發生了什麼」。
+title: '[BUG] '
+labels:
+  - bug
+body:
+  # 这些 id 就是 URL 查询参数的键名：站点页脚的「反馈 BUG」会把版本号 / 系统 /
+  # 浏览器 / 页面地址 / 窗口尺寸按这些 id 预填好。这份繁体中文表单的 id 与顺序必须与
+  # 简体版 bug_report.yml 完全一致（站点侧 src/config/issue.ts 的 BUG_PARAM 与
+  # 它的单测会一起盯着），只是文案换成了繁体。
+  - type: markdown
+    attributes:
+      value: |
+        感謝回報！從站台頁尾點進來時，下面的**環境資訊已經自動填好**，你只需要補齊要自己描述的部分。
+
+        > 貼上輸入範例前請先去識別化：不要貼真實密碼、金鑰、身分證號或個人隱私資料。
+  - type: input
+    id: app-version
+    attributes:
+      label: 站台版本
+      description: 頁面底部或連結裡可以看到，形如 `0.1.0`。
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: 作業系統
+      description: 你是在哪個系統上遇到的。
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - Android
+        - iOS
+        - ChromeOS
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: 瀏覽器與版本
+      description: 例如 Chrome 141、Safari 26，帶上版本號更容易重現。
+      placeholder: Chrome 141
+    validations:
+      required: true
+  - type: input
+    id: page-url
+    attributes:
+      label: 出問題的頁面網址
+      description: 完整連結，例如 https://unikit.cc/tools/base64-string-converter
+      placeholder: https://unikit.cc/tools/...
+    validations:
+      required: true
+  - type: input
+    id: viewport
+    attributes:
+      label: 視窗尺寸
+      description: 形如 1440x900。只在小螢幕出現的問題請務必填。
+      placeholder: 1440x900
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 問題描述
+      description: 一句話說清「哪裡不對」。
+      placeholder: 按下「轉換」之後結果區一直是空的。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 重現步驟
+      description: 從打開頁面開始，一步步寫到你看到問題為止。
+      placeholder: |
+        1. 打開 ... 頁面
+        2. 在輸入框貼上 ...
+        3. 按下「轉換」
+        4. 結果區顯示 ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 預期結果 vs 實際結果
+      description: 你以為會發生什麼，實際發生了什麼。
+      placeholder: |
+        預期：輸出 Base64 結果
+        實際：結果區空白，主控台顯示 TypeError
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: 截圖 / 錯誤原文 / 其他補充
+      description: 截圖可以直接拖進這個框；錯誤請貼原文，不要只描述。
+      placeholder: 主控台錯誤原文、截圖、是否穩定重現、換瀏覽器是否一樣……
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 送出前確認
+      options:
+        - label: 我貼的範例資料已經去識別化，不含真實密碼 / 金鑰 / 個人隱私。
+          required: true
+        - label: 我同意公開討論這個問題（需要私下溝通請改寄郵件，見儲存庫 README）。
+          required: false

@@ -1,0 +1,110 @@
+name: 不具合の報告
+description: サイトのツールに再現できる不具合があります —— 送信後、「何が起きたか」を記入してください。
+title: '[BUG] '
+labels:
+  - bug
+body:
+  # 这些 id 就是 URL 查询参数的键名：站点页脚的「反馈 BUG」会把版本号 / 系统 /
+  # 浏览器 / 页面地址 / 窗口尺寸按这些 id 预填好。这份日文表单的 id 与顺序必须与
+  # 简体中文版 bug_report.yml 完全一致（站点侧 src/config/issue.ts 的 BUG_PARAM 与
+  # 它的单测会一起盯着），只是文案换成了日文。
+  - type: markdown
+    attributes:
+      value: |
+        ご報告ありがとうございます。サイトのフッターから開いた場合、下の**環境情報はすでに入力済み**です。ご自身で書く部分だけ補足してください。
+
+        > 入力例を貼る前に必ずマスクしてください。実際のパスワード・鍵・身分証番号・個人情報は貼らないでください。
+  - type: input
+    id: app-version
+    attributes:
+      label: サイトのバージョン
+      description: ページ下部かリンク先で確認できます（例：`0.1.0`）。
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: オペレーティングシステム
+      description: どの環境で発生しましたか。
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - Android
+        - iOS
+        - ChromeOS
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: ブラウザとバージョン
+      description: 例：Chrome 141、Safari 26。バージョンがあると再現しやすくなります。
+      placeholder: Chrome 141
+    validations:
+      required: true
+  - type: input
+    id: page-url
+    attributes:
+      label: 問題が起きたページの URL
+      description: 完全な URL（例：https://unikit.cc/tools/base64-string-converter）
+      placeholder: https://unikit.cc/tools/...
+    validations:
+      required: true
+  - type: input
+    id: viewport
+    attributes:
+      label: ウィンドウサイズ
+      description: 例：1440x900。小さい画面だけで起きる問題は必ず記入してください。
+      placeholder: 1440x900
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 何が起きたか
+      description: 「どこがおかしいか」を一文で書いてください。
+      placeholder: 「変換」を押しても結果欄が空のままでした。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 再現手順
+      description: ページを開いたところから、問題が起きるまでの手順を順番に書いてください。
+      placeholder: |
+        1. ... のページを開く
+        2. 入力欄に ... を貼り付ける
+        3. 「変換」を押す
+        4. 結果欄に ... と表示される
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待する結果と実際の結果
+      description: どうなると思っていたか、実際にはどうなったか。
+      placeholder: |
+        期待：Base64 の結果が出力される
+        実際：結果欄が空で、コンソールに TypeError が出る
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: スクリーンショット / エラー原文 / その他の補足
+      description: スクリーンショットはこの欄に直接ドラッグできます。エラーは要約せず原文を貼ってください。
+      placeholder: コンソールのエラー原文、スクリーンショット、毎回再現するか、別のブラウザでも同じか……
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 送信前の確認
+      options:
+        - label: 貼り付けたサンプルはマスク済みで、実際のパスワード・鍵・個人情報を含みません。
+          required: true
+        - label: この問題を公開で議論することに同意します（非公開にしたい場合はメールへ。リポジトリの README 参照）。
+          required: false

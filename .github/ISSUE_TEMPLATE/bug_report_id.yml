@@ -1,0 +1,110 @@
+name: Laporkan bug
+description: Ada masalah yang bisa direproduksi di situs — jelaskan apa yang terjadi setelah dikirim.
+title: '[BUG] '
+labels:
+  - bug
+body:
+  # 这些 id 就是 URL 查询参数的键名：站点页脚的「反馈 BUG」会把版本号 / 系统 /
+  # 浏览器 / 页面地址 / 窗口尺寸按这些 id 预填好。这份印尼文表单的 id 与顺序必须与
+  # 简体中文版 bug_report.yml 完全一致（站点侧 src/config/issue.ts 的 BUG_PARAM 与
+  # 它的单测会一起盯着），只是文案换成了印尼文。
+  - type: markdown
+    attributes:
+      value: |
+        Terima kasih atas laporannya! **Kolom lingkungan di bawah sudah terisi otomatis** jika kamu membuka formulir ini dari footer situs — kamu hanya perlu menjelaskan masalahnya.
+
+        > Samarkan dulu data contoh sebelum menempel: jangan sertakan kata sandi, kunci, nomor identitas, atau data pribadi yang asli.
+  - type: input
+    id: app-version
+    attributes:
+      label: Versi situs
+      description: Terlihat di bagian bawah halaman atau di tautannya, misalnya `0.1.0`.
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Sistem operasi
+      description: Di sistem mana masalahnya muncul?
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - Android
+        - iOS
+        - ChromeOS
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser dan versinya
+      description: Misalnya Chrome 141 atau Safari 26 — nomor versi sangat membantu untuk mereproduksi masalahnya.
+      placeholder: Chrome 141
+    validations:
+      required: true
+  - type: input
+    id: page-url
+    attributes:
+      label: Halaman tempat masalahnya muncul
+      description: URL lengkap, misalnya https://unikit.cc/tools/base64-string-converter
+      placeholder: https://unikit.cc/tools/...
+    validations:
+      required: true
+  - type: input
+    id: viewport
+    attributes:
+      label: Ukuran jendela
+      description: Seperti 1440x900. Isi ini jika masalahnya hanya muncul di layar kecil.
+      placeholder: 1440x900
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Apa yang terjadi
+      description: Satu kalimat tentang apa yang salah.
+      placeholder: Setelah menekan "Konversi", area hasil tetap kosong.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Langkah reproduksi
+      description: Mulai dari membuka halaman, selangkah demi selangkah, sampai masalahnya muncul.
+      placeholder: |
+        1. Buka halaman ...
+        2. Tempel ... ke kolom masukan
+        3. Tekan "Konversi"
+        4. Area hasil menampilkan ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Harapan dan kenyataan
+      description: Apa yang kamu harapkan dan apa yang sebenarnya terjadi.
+      placeholder: |
+        Harapan: hasil Base64 muncul
+        Kenyataan: area hasil kosong dan konsol menampilkan TypeError
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Tangkapan layar / teks galat / tambahan lain
+      description: Tangkapan layar bisa langsung diseret ke kotak ini. Tempel teks galat apa adanya, jangan hanya dideskripsikan.
+      placeholder: Teks galat dari konsol, tangkapan layar, apakah selalu terjadi, apakah browser lain sama…
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Sebelum mengirim
+      options:
+        - label: Data contoh yang saya tempel sudah disamarkan — tanpa kata sandi, kunci, atau data pribadi yang asli.
+          required: true
+        - label: Saya setuju dibahas secara publik (untuk hal pribadi, kirim email; lihat README repositori).
+          required: false

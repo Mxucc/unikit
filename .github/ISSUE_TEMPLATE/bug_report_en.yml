@@ -1,0 +1,110 @@
+name: Bug report
+description: Something on the site is broken and reproducible — please describe what happened after you submit.
+title: '[BUG] '
+labels:
+  - bug
+body:
+  # 这些 id 就是 URL 查询参数的键名：站点页脚的「反馈 BUG」会把版本号 / 系统 /
+  # 浏览器 / 页面地址 / 窗口尺寸按这些 id 预填好。这份英文表单的 id 与顺序必须与
+  # 中文版 bug_report.yml 完全一致（站点侧 src/config/issue.ts 的 BUG_PARAM 与
+  # 它的单测会一起盯着），只是文案换成了英文。
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report! The **environment fields below are filled in automatically** when you open this form from the site footer — you only need to describe the problem itself.
+
+        > Please redact anything sensitive before pasting samples: no real passwords, keys, ID numbers or personal data.
+  - type: input
+    id: app-version
+    attributes:
+      label: Site version
+      description: Shown in the footer or in the link that brought you here, e.g. `0.1.0`.
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      description: Which system were you on when it happened?
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - Android
+        - iOS
+        - ChromeOS
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      description: For example Chrome 141 or Safari 26 — the version number makes it much easier to reproduce.
+      placeholder: Chrome 141
+    validations:
+      required: true
+  - type: input
+    id: page-url
+    attributes:
+      label: Page where it happened
+      description: Full URL, e.g. https://unikit.cc/tools/base64-string-converter
+      placeholder: https://unikit.cc/tools/...
+    validations:
+      required: true
+  - type: input
+    id: viewport
+    attributes:
+      label: Viewport size
+      description: Like 1440x900. Please fill this in if the problem only shows up on a small screen.
+      placeholder: 1440x900
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: One sentence on what is wrong.
+      placeholder: After clicking "Convert" the result area stayed empty.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: From opening the page, step by step, until you saw the problem.
+      placeholder: |
+        1. Open the ... page
+        2. Paste ... into the input
+        3. Click "Convert"
+        4. The result area shows ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual
+      description: What you expected to happen, and what actually happened.
+      placeholder: |
+        Expected: a Base64 result
+        Actual: the result area is blank and the console shows a TypeError
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots / error text / anything else
+      description: Drag screenshots straight into this box; paste error text verbatim instead of describing it.
+      placeholder: Console error text, screenshots, whether it always reproduces, whether another browser behaves the same…
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before you submit
+      options:
+        - label: I redacted my sample data — no real passwords, keys or personal information.
+          required: true
+        - label: I agree to discuss this publicly (for anything private, email us — see the repository README).
+          required: false

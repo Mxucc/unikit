@@ -22,10 +22,16 @@
 | 页面地址 | 你出问题时所在的页面（已去掉查询串与锚点） |
 | 窗口尺寸 | 例如 `1440x900`（窄屏布局专属的问题常只在这里复现） |
 
+表单按站点语言分：8 种语言各有一份（`bug_report.yml`、`bug_report_en.yml`、`bug_report_zh-Hant.yml`、`bug_report_ja.yml`、`bug_report_de.yml`、`bug_report_nl.yml`、`bug_report_es.yml`、`bug_report_id.yml`）—— 每份的字段、字段 id 与预填参数完全一样，只有文案语言不同。
+
 也可以自己拼这个地址：在下面这个链接末尾补上参数即可（参数名就是表单里的字段 id）：
 
 ```text
+# 中文表单（bug_report.yml）；其余语言把文件名换成上面对应的那一份
 https://github.com/Mxucc/unikit/issues/new?template=bug_report.yml&app-version=0.1.0&os=macOS&browser=Chrome&page-url=https%3A%2F%2Funikit.cc%2Ftools%2Fbase64-string-converter&viewport=1440x900
+
+# 英文表单（bug_report_en.yml）
+https://github.com/Mxucc/unikit/issues/new?template=bug_report_en.yml&app-version=0.1.0&os=macOS&browser=Chrome&page-url=https%3A%2F%2Funikit.cc%2Ftools%2Fbase64-string-converter&viewport=1440x900
 ```
 
 所有参数都是可选的，缺哪个就少填哪个；带中文或空格的值记得做 URL 编码。
@@ -54,3 +60,5 @@ https://github.com/Mxucc/unikit/issues/new?template=bug_report.yml&app-version=0
 This repository is **not** the source of UniKit — it exists only to collect **bug reports and feature requests**. UniKit itself is **not open source** (all rights reserved), so there is no source code here and pull requests are not accepted.
 
 Click **Report a bug** in the footer of any page on <https://unikit.cc> to open a pre-filled issue form (site version, OS, browser, page URL and viewport are filled in automatically). For anything sensitive, email **support@unikit.cc** instead of posting publicly.
+
+The form language follows the site language — there is one form per locale (`bug_report.yml`, `bug_report_en.yml`, `bug_report_zh-Hant.yml`, `bug_report_ja.yml`, `bug_report_de.yml`, `bug_report_nl.yml`, `bug_report_es.yml`, `bug_report_id.yml`). They all have exactly the same fields and pre-filled parameters; you can also build the link yourself with `?template=<file>` plus the field ids (`app-version`, `os`, `browser`, `page-url`, `viewport`).

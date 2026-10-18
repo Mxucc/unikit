@@ -1,0 +1,110 @@
+name: Fehler melden
+description: Auf der Website gibt es einen reproduzierbaren Fehler — beschreiben Sie nach dem Absenden bitte, was passiert ist.
+title: '[BUG] '
+labels:
+  - bug
+body:
+  # 这些 id 就是 URL 查询参数的键名：站点页脚的「反馈 BUG」会把版本号 / 系统 /
+  # 浏览器 / 页面地址 / 窗口尺寸按这些 id 预填好。这份德文表单的 id 与顺序必须与
+  # 简体中文版 bug_report.yml 完全一致（站点侧 src/config/issue.ts 的 BUG_PARAM 与
+  # 它的单测会一起盯着），只是文案换成了德文。
+  - type: markdown
+    attributes:
+      value: |
+        Danke für die Meldung! Die **Umgebungsfelder unten sind bereits ausgefüllt**, wenn Sie dieses Formular über den Footer der Website öffnen — Sie müssen nur noch das Problem selbst beschreiben.
+
+        > Bitte anonymisieren Sie Beispieldaten vor dem Einfügen: keine echten Passwörter, Schlüssel, Ausweisnummern oder persönlichen Daten.
+  - type: input
+    id: app-version
+    attributes:
+      label: Version der Website
+      description: Steht im Footer oder im Link, zum Beispiel `0.1.0`.
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Betriebssystem
+      description: Auf welchem System ist es aufgetreten?
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - Android
+        - iOS
+        - ChromeOS
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser und Version
+      description: Zum Beispiel Chrome 141 oder Safari 26 — mit Versionsnummer lässt sich der Fehler viel leichter reproduzieren.
+      placeholder: Chrome 141
+    validations:
+      required: true
+  - type: input
+    id: page-url
+    attributes:
+      label: Seite, auf der es passiert ist
+      description: Vollständige URL, zum Beispiel https://unikit.cc/tools/base64-string-converter
+      placeholder: https://unikit.cc/tools/...
+    validations:
+      required: true
+  - type: input
+    id: viewport
+    attributes:
+      label: Fenstergröße
+      description: Etwa 1440x900. Bitte ausfüllen, wenn das Problem nur auf kleinen Bildschirmen auftritt.
+      placeholder: 1440x900
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Was ist passiert
+      description: In einem Satz, was nicht stimmt.
+      placeholder: Nach dem Klick auf „Konvertieren“ blieb der Ergebnisbereich leer.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Schritte zum Reproduzieren
+      description: Vom Öffnen der Seite Schritt für Schritt bis zu dem Punkt, an dem der Fehler auftritt.
+      placeholder: |
+        1. Seite ... öffnen
+        2. ... in das Eingabefeld einfügen
+        3. Auf „Konvertieren“ klicken
+        4. Der Ergebnisbereich zeigt ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Erwartetes und tatsächliches Ergebnis
+      description: Was Sie erwartet haben und was tatsächlich passiert ist.
+      placeholder: |
+        Erwartet: das Base64-Ergebnis wird ausgegeben
+        Tatsächlich: der Ergebnisbereich bleibt leer, die Konsole meldet TypeError
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots / Fehlertext / Sonstiges
+      description: Screenshots können direkt in dieses Feld gezogen werden. Fehler bitte im Originaltext einfügen, nicht beschreiben.
+      placeholder: Konsolenfehler im Originaltext, Screenshots, ob es immer reproduzierbar ist, ob ein anderer Browser dasselbe zeigt …
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Vor dem Absenden
+      options:
+        - label: Ich habe meine Beispieldaten anonymisiert — keine echten Passwörter, Schlüssel oder persönlichen Daten.
+          required: true
+        - label: Ich bin mit einer öffentlichen Diskussion einverstanden (für Vertrauliches bitte E-Mail, siehe README des Repositories).
+          required: false

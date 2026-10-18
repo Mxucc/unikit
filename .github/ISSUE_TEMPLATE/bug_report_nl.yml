@@ -1,0 +1,110 @@
+name: Bug melden
+description: Er is een reproduceerbaar probleem op de site — beschrijf na het versturen wat er is gebeurd.
+title: '[BUG] '
+labels:
+  - bug
+body:
+  # 这些 id 就是 URL 查询参数的键名：站点页脚的「反馈 BUG」会把版本号 / 系统 /
+  # 浏览器 / 页面地址 / 窗口尺寸按这些 id 预填好。这份荷兰文表单的 id 与顺序必须与
+  # 简体中文版 bug_report.yml 完全一致（站点侧 src/config/issue.ts 的 BUG_PARAM 与
+  # 它的单测会一起盯着），只是文案换成了荷兰文。
+  - type: markdown
+    attributes:
+      value: |
+        Bedankt voor je melding! De **omgevingsvelden hieronder zijn al ingevuld** als je dit formulier via de footer van de site opent — je hoeft alleen het probleem zelf te beschrijven.
+
+        > Maak voorbeeldgegevens eerst anoniem voordat je ze plakt: geen echte wachtwoorden, sleutels, identiteitsnummers of persoonsgegevens.
+  - type: input
+    id: app-version
+    attributes:
+      label: Versie van de site
+      description: Staat onderaan de pagina of in de link, bijvoorbeeld `0.1.0`.
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Besturingssysteem
+      description: Op welk systeem deed het zich voor?
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - Android
+        - iOS
+        - ChromeOS
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser en versie
+      description: Bijvoorbeeld Chrome 141 of Safari 26 — met het versienummer is het veel makkelijker te reproduceren.
+      placeholder: Chrome 141
+    validations:
+      required: true
+  - type: input
+    id: page-url
+    attributes:
+      label: Pagina waar het misging
+      description: Volledige URL, bijvoorbeeld https://unikit.cc/tools/base64-string-converter
+      placeholder: https://unikit.cc/tools/...
+    validations:
+      required: true
+  - type: input
+    id: viewport
+    attributes:
+      label: Venstergrootte
+      description: Zoals 1440x900. Vul dit in als het probleem alleen op een klein scherm optreedt.
+      placeholder: 1440x900
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Wat er gebeurde
+      description: In één zin wat er niet klopt.
+      placeholder: Na het klikken op 'Converteren' bleef het resultaatvak leeg.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Stappen om te reproduceren
+      description: Vanaf het openen van de pagina, stap voor stap, tot je het probleem zag.
+      placeholder: |
+        1. Open de pagina ...
+        2. Plak ... in het invoerveld
+        3. Klik op 'Converteren'
+        4. Het resultaatvak toont ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Verwacht en werkelijk resultaat
+      description: Wat je verwachtte en wat er echt gebeurde.
+      placeholder: |
+        Verwacht: een Base64-resultaat
+        Werkelijk: het resultaatvak blijft leeg en de console toont een TypeError
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots / foutmelding / overig
+      description: Screenshots kun je direct in dit vak slepen. Plak foutmeldingen letterlijk in plaats van ze te omschrijven.
+      placeholder: Foutmelding uit de console, screenshots, of het altijd gebeurt, of een andere browser hetzelfde doet …
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Voordat je verstuurt
+      options:
+        - label: Ik heb mijn voorbeeldgegevens geanonimiseerd — geen echte wachtwoorden, sleutels of persoonsgegevens.
+          required: true
+        - label: Ik ga akkoord met een openbare discussie (voor vertrouwelijke zaken liever e-mail, zie de README van de repository).
+          required: false

@@ -1,0 +1,110 @@
+name: Informar de un error
+description: Hay un problema reproducible en el sitio — describe qué ha pasado después de enviarlo.
+title: '[BUG] '
+labels:
+  - bug
+body:
+  # 这些 id 就是 URL 查询参数的键名：站点页脚的「反馈 BUG」会把版本号 / 系统 /
+  # 浏览器 / 页面地址 / 窗口尺寸按这些 id 预填好。这份西班牙文表单的 id 与顺序必须与
+  # 简体中文版 bug_report.yml 完全一致（站点侧 src/config/issue.ts 的 BUG_PARAM 与
+  # 它的单测会一起盯着），只是文案换成了西班牙文。
+  - type: markdown
+    attributes:
+      value: |
+        ¡Gracias por el aviso! Los **campos de entorno de abajo ya vienen rellenos** si abres este formulario desde el pie de página del sitio: solo tienes que describir el problema.
+
+        > Anonimiza los datos de ejemplo antes de pegarlos: nada de contraseñas, claves, números de identidad ni datos personales reales.
+  - type: input
+    id: app-version
+    attributes:
+      label: Versión del sitio
+      description: Se ve en el pie de página o en el enlace, por ejemplo `0.1.0`.
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Sistema operativo
+      description: ¿En qué sistema te ha ocurrido?
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - Android
+        - iOS
+        - ChromeOS
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Navegador y versión
+      description: Por ejemplo Chrome 141 o Safari 26; con el número de versión es mucho más fácil reproducirlo.
+      placeholder: Chrome 141
+    validations:
+      required: true
+  - type: input
+    id: page-url
+    attributes:
+      label: Página donde ha ocurrido
+      description: URL completa, por ejemplo https://unikit.cc/tools/base64-string-converter
+      placeholder: https://unikit.cc/tools/...
+    validations:
+      required: true
+  - type: input
+    id: viewport
+    attributes:
+      label: Tamaño de la ventana
+      description: Como 1440x900. Rellénalo si el problema solo aparece en pantallas pequeñas.
+      placeholder: 1440x900
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Qué ha pasado
+      description: En una frase, qué es lo que está mal.
+      placeholder: Al pulsar «Convertir» el área de resultados se quedó vacía.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducirlo
+      description: Desde que abres la página, paso a paso, hasta que ves el problema.
+      placeholder: |
+        1. Abre la página ...
+        2. Pega ... en el campo de entrada
+        3. Pulsa «Convertir»
+        4. El área de resultados muestra ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Resultado esperado y resultado real
+      description: Qué esperabas que pasara y qué pasó en realidad.
+      placeholder: |
+        Esperado: que se genere el resultado en Base64
+        Real: el área de resultados está vacía y la consola muestra un TypeError
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Capturas / texto del error / otros
+      description: Puedes arrastrar las capturas directamente a este cuadro. Pega el error tal cual en vez de describirlo.
+      placeholder: Texto del error de la consola, capturas, si se reproduce siempre, si en otro navegador pasa lo mismo…
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Antes de enviar
+      options:
+        - label: He anonimizado los datos de ejemplo — sin contraseñas, claves ni datos personales reales.
+          required: true
+        - label: Acepto que se discuta en público (para algo privado, escribe un correo; consulta el README del repositorio).
+          required: false
